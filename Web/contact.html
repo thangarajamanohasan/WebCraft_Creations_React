@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | WebCraft Creations</title>
+    <!-- favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%230B2C5E'><text x='10' y='75' font-size='80' font-family='Arial'>⚙️</text></svg>">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Copy all the same styles from about.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #0B2C5E;
+            --accent: #5BFF00;
+            --accent-soft: #d0ffb0;
+            --bg-light: #f9fafc;
+            --white: #ffffff;
+            --gray: #eef2f6;
+            --text-dark: #1e293b;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 25px 35px -12px rgba(11, 44, 94, 0.15);
+            --border-radius: 24px;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border-bottom: 1px solid rgba(11, 44, 94, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+
+
+        .logo-image {
+            height: 80px;
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* For mobile responsiveness */
+        @media (max-width: 768px) {
+            .logo-image {
+                height: 38px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: #1e2b45;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: white;
+            padding: 1.5rem;
+            gap: 1.2rem;
+            border-top: 1px solid var(--gray);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mobile-menu a {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            border: none;
+            cursor: pointer;
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 15px 25px -10px var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #0f3b7a;
+            transform: translateY(-3px);
+            box-shadow: 0 25px 30px -8px var(--primary);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 8px 18px -6px var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #9aff4c;
+            transform: scale(1.02);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3f7a 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--gray);
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(11, 44, 94, 0.1);
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .social-links-large {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+
+
+
+        /* Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            border-radius: 3rem 3rem 0 0;
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Fade animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top */
+        #backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: var(--accent);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-image {
+                height: 38px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-form-container,
+            .contact-info {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="WebCraft Creations Logo.png" alt="WebCraft Creations Logo" class="logo-image">
+
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="fade-up">Contact Us</h1>
+            <p class="fade-up">We'd love to hear from you. Get in touch today!</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container" style="margin-bottom: 4rem;">
+        <div class="grid-2">
+            <!-- Contact Form -->
+            <div class="contact-form-container fade-up">
+                <h2 style="color: var(--primary); margin-bottom: 2rem;">Send us a message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Full Name">
+                        <span class="error" id="nameError">Name is required</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email Address">
+                        <span class="error" id="emailError">Valid email required</span>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="Your Message" rows="5"></textarea>
+                        <span class="error" id="msgError">Message must be at least 10 characters</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info fade-up">
+                <h2 style="color: var(--primary); margin-bottom: 2rem;">Contact Information</h2>
+
+                <div class="info-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <p style="color: var(--text-light);"><a href="https://wa.me/94716005341" target="_blank">+94 71
+                                600 5341</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="far fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p style="color: var(--text-light);"><a
+                                href="mailto:webcraftcteaions27@email.com">webcraftcteaions27@email.com</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fab fa-instagram"></i>
+                    <div>
+                        <h4>Instagram</h4>
+                        <p style="color: var(--text-light);"><a href="https://www.instagram.com/web_craftcreations"
+                                target="_blank">@webcraftcreations</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <h4>WhatsApp Channel</h4>
+                        <p style="color: var(--text-light);"><a
+                                href="https://whatsapp.com/channel/0029Vb7RxGT5a23uP1CS8c2v" target="_blank">Join our
+                                channel</a></p>
+                    </div>
+                </div>
+
+                <div class="social-links-large">
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="far fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 style="margin-bottom: 1rem;">WebCraft Creations</h4>
+                    <p style="opacity: 0.8; margin-bottom: 1rem;">Where creativity meets technology. We craft digital
+                        excellence.</p>
+                    <div class="social-links" style="display: flex; gap: 1rem;">
+                         <a href="https://wa.me/94716005341"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/web_craftcreations"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:webcraftcteaions27@email.com"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Quick Links</h4>
+                    <ul style="list-style: none; opacity: 0.8;">
+                        <li style="margin-bottom: 0.5rem;"><a href="index.html">Home</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="about.html">About Us</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="services.html">Services</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Contact</h4>
+                    <p style="opacity: 0.8; margin-bottom: 0.5rem;"><i class="fab fa-whatsapp"></i> +94 71 600 5341</p>
+                    <p style="opacity: 0.8;"><i class="far fa-envelope"></i> webcraftcteaions27@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="opacity: 0.6;">&copy; 2025 WebCraft Creations. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // Mobile menu
+        const hamburger = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('appear');
+            });
+        }, { threshold: 0.2 });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Back to top
+        const backBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) backBtn.classList.add('show');
+            else backBtn.classList.remove('show');
+        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Form validation
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+
+            let phoneNumber = "94716005341"; // your WhatsApp number
+
+            let text = "Full Name: " + name + "%0A"
+                + "Email: " + email + "%0A"
+                + "Message: " + message;
+
+            let whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + text;
+
+            window.open(whatsappURL, "_blank");
+
+        });
+    </script>
+</body>
+
+</html>

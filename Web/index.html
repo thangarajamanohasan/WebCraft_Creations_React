@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCraft Creations | where creativity meets technology</title>
+    <!-- favicon (simple inline for demo) -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%230B2C5E'><text x='10' y='75' font-size='80' font-family='Arial'>⚙️</text></svg>">
+    <!-- Font Awesome icons (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter (clean modern) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* global style (merged with style.css) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #0B2C5E;
+            --accent: #5BFF00;
+            --accent-soft: #d0ffb0;
+            --bg-light: #f9fafc;
+            --white: #ffffff;
+            --gray: #eef2f6;
+            --text-dark: #1e293b;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 25px 35px -12px rgba(11, 44, 94, 0.15);
+            --border-radius: 24px;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* sticky navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border-bottom: 1px solid rgba(11, 44, 94, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+       
+
+        .logo-image {
+            height: 80px;
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* For mobile responsiveness */
+        @media (max-width: 768px) {
+            .logo-image {
+                height: 38px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: #1e2b45;
+            transition: 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* mobile menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: white;
+            padding: 1.5rem;
+            gap: 1.2rem;
+            border-top: 1px solid var(--gray);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mobile-menu a {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            border: none;
+            cursor: pointer;
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 15px 25px -10px var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #0f3b7a;
+            transform: translateY(-3px);
+            box-shadow: 0 25px 30px -8px var(--primary);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 8px 18px -6px var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #9aff4c;
+            transform: scale(1.02);
+        }
+
+       
+        /* footer */
+         .footer {
+            background: var(--primary);
+            color: white;
+            border-radius: 3rem 3rem 0 0;
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Fade animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top */
+        #backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: var(--accent);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* scroll animation class */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* stats counter */
+        .stat-item {
+            text-align: center;
+        }
+
+        .counter {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        /* back to top */
+        #backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: var(--accent);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+     
+
+        /* form */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(11, 44, 94, 0.2);
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .instagram-link,
+        .whatsapp-link {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* small tweaks */
+        .grid-4,
+        .grid-3,
+        .grid-2 {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 1000px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .grid-3,
+            .grid-2,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- sticky nav + hamburger -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="WebCraft Creations Logo.png" alt="WebCraft Creations Logo" class="logo-image">
+
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+
+    <div id="page-content">
+        <!-- home page -->
+        <section id="home-page" class="page active-page">
+            <div class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+                <!-- hero -->
+                <div class="fade-up" style="display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
+                    <div style="flex:1">
+                        <h1
+                            style="font-size: clamp(2.5rem,5vw,4rem); font-weight: 700; line-height: 1.2; color: var(--primary);">
+                            Elevate Your Online Presence with WebCraft Creations</h1>
+                        <p style="font-size: 1.3rem; margin: 1.5rem 0 2rem; color: #2d3a5e;">Where Creativity Meets
+                            Technology</p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                         
+                            <a href="contact.html" class="btn btn-accent">Contact Us</a>
+                        </div>
+                        <!-- special launch banner -->
+                        <div
+                            style="margin-top: 3rem; background: var(--accent-soft); padding: 1.2rem 2rem; border-radius: 60px; color: var(--primary); font-weight: 600; box-shadow: var(--shadow-sm);">
+                            🚀 Launch offer: 15% off on all university projects & assignments</div>
+                    </div>
+            
+                </div>
+                <!-- services overview -->
+                <div style="margin: 6rem 0 4rem;">
+                    <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 3rem;">Our core services</h2>
+                    <div class="grid-4">
+                        <div class="service-card"><i class="fas fa-code"
+                                style="color: var(--accent); font-size: 2.5rem;"></i>
+                            <h3>Web design</h3>
+                            <p>Modern, responsive sites</p>
+                        </div>
+                        <div class="service-card"><i class="fas fa-graduation-cap"
+                                style="color: var(--accent); font-size: 2.5rem;"></i>
+                            <h3>University projects</h3>
+                            <p>Top grades guaranteed</p>
+                        </div>
+                        <div class="service-card"><i class="fas fa-pencil-alt"
+                                style="color: var(--accent); font-size: 2.5rem;"></i>
+                            <h3>Assignments</h3>
+                            <p>Plagiarism-free work</p>
+                        </div>
+                        <div class="service-card"><i class="fas fa-file-alt"
+                                style="color: var(--accent); font-size: 2.5rem;"></i>
+                            <h3>Pro documents</h3>
+                            <p>Reports & documentation</p>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </section>
+
+       
+        <!-- about page -->
+        <section id="about-page" class="page" style="display:none;">
+            <div class="container">
+                <h1 style="color:var(--primary);">About WebCraft</h1>
+                <p>Company story: from a small garage to digital leaders... Mission: empower students & businesses.
+                    Vision: global creative hub. Team of 12 experts.</p>
+                <div class="grid-3">
+                    <div class="service-card">🎯 Mission</div>
+                    <div class="service-card">🔭 Vision</div>
+                    <div class="service-card">⚡ Why choose us</div>
+                </div>
+            </div>
+        </section>
+        <!-- services page (full cards) -->
+        <section id="services-page" class="page" style="display:none;">
+            <div class="container">
+                <h1>Our services</h1>
+                <div class="grid-2">
+                    <div class="service-card"><i class="fas fa-laptop-code"></i>
+                        <h3>Website Design</h3>
+                        <p>Custom, responsive, SEO optimized.</p><button class="btn">Learn more</button>
+                    </div>
+                    <div class="service-card"><i class="fas fa-book-open"></i>
+                        <h3>University Projects</h3>
+                        <p>Research papers, theses, prototypes.</p><button class="btn">Learn more</button>
+                    </div>
+                    <div class="service-card"><i class="fas fa-tasks"></i>
+                        <h3>Assignments</h3>
+                        <p>All subjects, fast turnaround.</p><button class="btn">Learn more</button>
+                    </div>
+                    <div class="service-card"><i class="fas fa-file-signature"></i>
+                        <h3>Professional Docs</h3>
+                        <p>Technical writing, reports.</p><button class="btn">Learn more</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- contact page with form, map placeholder, links -->
+        <section id="contact-page" class="page" style="display:none;">
+            <div class="container">
+                <h1>Contact us</h1>
+                <div class="grid-2">
+                    <div>
+                        <form id="contactForm">
+                            <div class="form-group"><input type="text" id="name" placeholder="Name"><span class="error"
+                                    id="nameError">name required</span></div>
+                            <div class="form-group"><input type="email" id="email" placeholder="Email"><span
+                                    class="error" id="emailError">valid email required</span></div>
+                            <div class="form-group"><textarea id="message" placeholder="Message"
+                                    rows="4"></textarea><span class="error" id="msgError">message too short</span></div>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+
+   <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 style="margin-bottom: 1rem;">WebCraft Creations</h4>
+                    <p style="opacity: 0.8; margin-bottom: 1rem;">Where creativity meets technology. We craft digital
+                        excellence.</p>
+                    <div class="social-links" style="display: flex; gap: 1rem;">
+                        <a href="https://wa.me/94716005341"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/web_craftcreations"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:webcraftcteaions27@email.com"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Quick Links</h4>
+                    <ul style="list-style: none; opacity: 0.8;">
+                          <li style="margin-bottom: 0.5rem;"><a href="index.html">Home</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="about.html">About Us</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="services.html">Services</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Contact</h4>
+                    <p style="opacity: 0.8; margin-bottom: 0.5rem;"><i class="fab fa-whatsapp"></i> +94 71 600 5341</p>
+                    <p style="opacity: 0.8;"><i class="far fa-envelope"></i> webcraftcteaions27@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="opacity: 0.6;">&copy; 2025 WebCraft Creations. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" title="back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // script.js: hamburger, page router, scroll animations, counter, form validation, back to top, smooth scroll
+        (function () {
+            // mobile toggle
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+
+            // simple page routing based on current URL filename (simulate separate pages)
+            function setActivePage() {
+                const path = window.location.pathname.split('/').pop() || 'index.html';
+                const pages = document.querySelectorAll('.page');
+                pages.forEach(p => p.style.display = 'none');
+                if (path === 'index.html' || path === '' || path === '/') document.getElementById('home-page').style.display = 'block';
+                else if (path === 'about.html') document.getElementById('about-page').style.display = 'block';
+                else if (path === 'services.html') document.getElementById('services-page').style.display = 'block';
+                else if (path === 'contact.html') document.getElementById('contact-page').style.display = 'block';
+                else document.getElementById('home-page').style.display = 'block';
+            }
+            setActivePage();
+
+            // scroll animations (fade-up)
+            const fadeElements = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('appear');
+                });
+            }, { threshold: 0.2 });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // back to top button
+            const backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) backBtn.classList.add('show'); else backBtn.classList.remove('show');
+            });
+            backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            // stat counters (simple demo on pricing page)
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            const countObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.getAttribute('data-target')) || parseInt(el.innerText.replace(/\D/g, '')) || 499;
+                        let count = 0;
+                        const update = () => {
+                            if (count < target) { count += Math.ceil(target / 50); el.innerText = '$' + count; setTimeout(update, 10); }
+                            else el.innerText = '$' + target;
+                        };
+                        update();
+                        obs.unobserve(el);
+                    }
+                });
+            });
+            counters.forEach(c => countObserver.observe(c));
+
+            // contact form validation
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    let valid = true;
+                    const name = document.getElementById('name');
+                    const email = document.getElementById('email');
+                    const msg = document.getElementById('message');
+                    document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
+                    if (!name.value.trim()) { document.getElementById('nameError').style.display = 'block'; valid = false; }
+                    if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) { document.getElementById('emailError').style.display = 'block'; valid = false; }
+                    if (msg.value.trim().length < 5) { document.getElementById('msgError').style.display = 'block'; valid = false; }
+                    if (valid) alert('form sent (demo)');
+                });
+            }
+
+            // image gallery animations (simple hover scale already in css)
+            // interactive cards done via css
+
+            // smooth scrolling for anchor links (like learn more)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        })();
+    </script>
+
+    <!-- ensure all page containers have .page class and correct ids -->
+    <style>
+        .page {
+            display: none;
+        }
+
+        #home-page {
+            display: block;
+        }
+
+        /* default */
+        .service-card,
+        .project-card,
+        .pricing-card {
+            cursor: pointer;
+        }
+    </style>
+    <!-- additional UI fine-tuning -->
+</body>
+
+</html>
