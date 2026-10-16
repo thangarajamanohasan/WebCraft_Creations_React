@@ -1,10 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+import { createClient } from "@supabase/supabase-js";
 
-/** Without credentials the website stays functional, but reviews display a setup notice. */
-export const supabase = url && key ? createClient(url, key) : null;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey =
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 export type Review = {
   id: string;
@@ -13,3 +12,8 @@ export type Review = {
   message: string;
   created_at: string;
 };
+
+export const supabase =
+  supabaseUrl && supabaseKey
+    ? createClient(supabaseUrl, supabaseKey)
+    : null;
