@@ -1,3 +1,5 @@
+
 User-agent: *
 Allow: /
-Sitemap: https://web-craft-creations.vercel.app/sitemap.xml
+
+Sitemap: https://web-craft-creations-z6vr.vercel.app/sitemap.xml
