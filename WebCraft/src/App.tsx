@@ -327,7 +327,6 @@ function Header() {
   return (
     <header className="header">
       <div className="shell header-inner">
-        <Logo />
         <nav
           className={`navigation ${mobile ? "is-open" : ""}`}
           aria-label="Main navigation"
@@ -620,8 +619,8 @@ function Satisfaction({
           </h2>
           <p>
             We believe feedback is valuable. The figures here are calculated
-            directly from publicly visible customer reviews, not
-            estimated or invented milestones.
+            directly from publicly visible customer reviews, not estimated or
+            invented milestones.
           </p>
           <a href="#reviews" className="btn btn-navy">
             Read customer feedback <ArrowUpRight size={18} />
@@ -820,7 +819,9 @@ function Reviews({
                 </p>
               )}
               <small className="form-footnote">
-                <ShieldCheck size={15} /> Your review is published automatically. Please do not include sensitive personal information.
+                <ShieldCheck size={15} /> Your review is published
+                automatically. Please do not include sensitive personal
+                information.
               </small>
             </form>
           </div>
@@ -1051,17 +1052,24 @@ function Footer() {
 export default function App() {
   useEffect(() => {
     const targets = document.querySelectorAll<HTMLElement>(
-      ".section-title, .service-card, .value, .process-card, .stat-main, .stat-mini, .review-card, .faq-item, .contact-method, .about-art"
+      ".section-title, .service-card, .value, .process-card, .stat-main, .stat-mini, .review-card, .faq-item, .contact-method, .about-art",
     );
-    if (!window.IntersectionObserver || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("reveal-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+    if (
+      !window.IntersectionObserver ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -24px 0px" },
+    );
     targets.forEach((el) => {
       el.classList.add("reveal-ready");
       observer.observe(el);
