@@ -1,10 +1,3 @@
-
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey =
-  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-
 export type Review = {
   id: string;
   name: string;
@@ -12,8 +5,13 @@ export type Review = {
   message: string;
   created_at: string;
 };
+import { createClient } from "@supabase/supabase-js";
 
-export const supabase =
-  supabaseUrl && supabaseKey
-    ? createClient(supabaseUrl, supabaseKey)
-    : null;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("Supabase configuration missing");
+}
+
+export const supabase = createClient(supabaseUrl, supabaseKey);
